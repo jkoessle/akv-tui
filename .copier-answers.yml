@@ -1,0 +1,10 @@
+# Changes here will be overwritten by Copier.
+_commit: v0.2.3
+_src_path: gh:jkoessle/uv-copier-template
+author_mail: mail@jonathan-koessler.de
+author_name: Jonathan Kößler
+github_name: jkoessle
+module_name: akv_tui
+project_description: Simple TUI to search Azure KeyVault
+project_name: Azure Keyvault TUI
+repository_name: akv-tui

@@ -1,0 +1,32 @@
+[project]
+name = "akv-tui"
+version = "0.1.0"
+description = "Simple TUI to search Azure KeyVault"
+authors = [{name = "Jonathan Kößler", email = "mail@jonathan-koessler.de"}]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "azure-identity>=1.23.0",
+    "azure-keyvault>=4.2.0",
+    "azure-mgmt-keyvault>=11.0.0",
+    "azure-mgmt-resource>=24.0.0",
+    "pyperclip>=1.9.0",
+    "textual>=3.4.0",
+]
+
+[project.scripts]
+akv-tui = "akv_tui:main"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.1.0",
+    "pytest>=8.3.4",
+    "ruff>=0.9.9",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
