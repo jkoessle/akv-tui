@@ -22,6 +22,7 @@ akv-tui = "akv_tui.app:main"
 dev = [
     "pre-commit>=4.1.0",
     "pytest>=8.3.4",
+    "pytest-cov>=6.2.1",
     "pytest-mock>=3.14.1",
     "ruff>=0.9.9",
 ]
@@ -38,6 +39,7 @@ convention = "google"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "--cov=akv_tui --cov-report term-missing"
 
 [build-system]
 requires = ["hatchling"]
