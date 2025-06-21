@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Simple TUI to search Azure KeyVault"
 authors = [{name = "Jonathan Kößler", email = "mail@jonathan-koessler.de"}]
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = {text = "MIT"}
 dependencies = [
     "azure-identity>=1.23.0",
@@ -22,15 +22,19 @@ akv-tui = "akv_tui.app:main"
 dev = [
     "pre-commit>=4.1.0",
     "pytest>=8.3.4",
+    "pytest-mock>=3.14.1",
     "ruff>=0.9.9",
 ]
 
 [tool.ruff.lint]
-select = [ "ALL" ]
-ignore = [ "D100" ]
+select = ["ALL"]
+ignore = ["D100", "COM812"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D", "ANN", "S101"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
