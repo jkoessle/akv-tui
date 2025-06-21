@@ -4,7 +4,8 @@ version = "0.1.0"
 description = "Simple TUI to search Azure KeyVault"
 authors = [{name = "Jonathan Kößler", email = "mail@jonathan-koessler.de"}]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.10"
+license = {text = "MIT"}
 dependencies = [
     "azure-identity>=1.23.0",
     "azure-keyvault>=4.2.0",
@@ -15,7 +16,7 @@ dependencies = [
 ]
 
 [project.scripts]
-akv-tui = "akv_tui:main"
+akv-tui = "akv_tui.app:main"
 
 [dependency-groups]
 dev = [

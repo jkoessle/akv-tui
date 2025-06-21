@@ -158,5 +158,6 @@ class VaultTUIApp(App):
                 event.stop()
 
 
-if __name__ == "__main__":
+def main() -> None:
+    """Entrypoint for akv-tui."""
     VaultTUIApp().run()
