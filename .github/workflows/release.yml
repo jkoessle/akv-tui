@@ -1,0 +1,63 @@
+name: Auto Versioning on PR Merge (Branch-Based)
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  versioning:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Ensure all tags are available
+
+      - name: Get latest tag
+        id: get_version
+        run: echo "VERSION=$(git describe --tags --abbrev=0 || echo 0.0.0)" >> $GITHUB_ENV
+
+      - name: Determine version bump from branch name
+        id: bump_version
+        run: |
+          IFS='.' read -r MAJOR MINOR PATCH <<< "${VERSION#v}"
+
+          BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+
+          if [[ "$BRANCH_NAME" == release/* ]]; then
+            MAJOR=$((MAJOR + 1))
+            MINOR=0
+            PATCH=0
+          elif [[ "$BRANCH_NAME" == feature/* ]]; then
+            MINOR=$((MINOR + 1))
+            PATCH=0
+          elif [[ "$BRANCH_NAME" == bugfix/* ]]; then
+            PATCH=$((PATCH + 1))
+          else
+            echo "Branch name does not match expected patterns. Skipping version bump."
+            exit 0
+          fi
+
+          NEW_VERSION="$MAJOR.$MINOR.$PATCH"
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+      - name: Create and push new tag
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git tag -a "v${NEW_VERSION}" -m "Version $NEW_VERSION"
+          git push origin "v${NEW_VERSION}"
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: "v${{ env.NEW_VERSION }}"
+          release_name: "Release v${{ env.NEW_VERSION }}"
+          body: "${{ github.event.pull_request.body }}"
+          draft: false
+          prerelease: false

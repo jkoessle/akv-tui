@@ -1,0 +1,17 @@
+name: Enforce Branch Naming on PRs
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  validate-source-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check source branch name
+        run: |
+          BRANCH_NAME="${GITHUB_HEAD_REF}"
+          if [[ ! "$BRANCH_NAME" =~ ^(feature|bugfix|release)/ ]]; then
+            echo "Pull requests from branch '$BRANCH_NAME' are not allowed. Must be one of 'feature|bugfix|release'."
+            exit 1
+          fi
