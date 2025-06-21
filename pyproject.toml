@@ -25,6 +25,8 @@ dev = [
     "pytest-cov>=6.2.1",
     "pytest-mock>=3.14.1",
     "ruff>=0.9.9",
+    "tox>=4.27.0",
+    "tox-uv>=1.26.0",
 ]
 
 [tool.ruff.lint]
@@ -40,6 +42,17 @@ convention = "google"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "--cov=akv_tui --cov-report term-missing"
+
+[tool.tox]
+env_list = ["py311", "py312", "py313"]
+requires = ["tox-uv"]
+
+[tool.tox.testenv]
+uv = true
+extras = "dev"
+
+[tool.tox.env_run_base]
+commands = [["pytest"]]
 
 [build-system]
 requires = ["hatchling"]
