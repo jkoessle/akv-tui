@@ -24,6 +24,13 @@ dev = [
     "ruff>=0.9.9",
 ]
 
+[tool.ruff.lint]
+select = [ "ALL" ]
+ignore = [ "D100" ]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
