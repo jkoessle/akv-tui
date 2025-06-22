@@ -1,9 +1,9 @@
 [project]
 name = "akv-tui"
-version = "0.1.0"
 description = "Simple TUI to search Azure KeyVault"
 authors = [{name = "Jonathan Kößler", email = "mail@jonathan-koessler.de"}]
 readme = "README.md"
+dynamic = ["version"]
 requires-python = ">=3.11"
 license = {text = "MIT"}
 dependencies = [
@@ -55,5 +55,19 @@ extras = "dev"
 commands = [["pytest"]]
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.uv-dynamic-versioning]
+vcs = "git"
+style = "semver"
+bump = true
+
+[tool.hatch.build.hooks.version]
+path = "src/akv_tui/_version.py"
+template = '''
+version = "{version}"
+'''
