@@ -1,5 +1,10 @@
 # 🔐 AKV-TUI — Azure Key Vault Explorer
 
+[![CI](https://github.com/jkoessle/akv-tui/actions/workflows/release.yml/badge.svg)](https://github.com/jkoessle/akv-tui/actions/workflows/release.yml)
+[![PyPI version](https://badge.fury.io/py/akv-tui.svg)](https://pypi.org/project/akv-tui/)
+[![Python versions](https://img.shields.io/pypi/pyversions/akv-tui)](https://pypi.org/project/akv-tui/)
+[![License](https://img.shields.io/github/license/jkoessle/akv-tui)](https://github.com/jkoessle/akv-tui/blob/main/LICENSE)
+
 **AKV-TUI** is a fast and intuitive terminal-based UI (TUI) for browsing secrets, keys, and certificates in your Azure Key Vaults. Built with [Textual](https://github.com/Textualize/textual), it lets you quickly search, preview, and copy values from your vaults — all from your terminal.
 
 ## ✨ Features
