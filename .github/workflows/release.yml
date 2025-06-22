@@ -89,5 +89,5 @@ jobs:
       - name: "Build"
         run: uv build
 
-      - name: Publish
-        uses: uv publish
+      - name: "Publish"
+        run: uv publish
