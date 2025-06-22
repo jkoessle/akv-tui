@@ -33,7 +33,7 @@ jobs:
           elif [[ "$BRANCH_NAME" == feature/* ]]; then
             MINOR=$((MINOR + 1))
             PATCH=0
-          elif [[ "$BRANCH_NAME" == bugfix/* ]]; then
+          elif [[ "$BRANCH_NAME" == fix/* ]]; then
             PATCH=$((PATCH + 1))
           else
             echo "Branch name does not match expected patterns. Skipping version bump."
