@@ -1,4 +1,4 @@
-name: Auto Versioning on PR Merge (Branch-Based)
+name: Release CI
 
 on:
   pull_request:
