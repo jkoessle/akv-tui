@@ -12,7 +12,7 @@ jobs:
       - name: Check branch name
         run: |
           BRANCH_NAME="${GITHUB_REF#refs/heads/}"
-          if [[ ! "$BRANCH_NAME" =~ ^(feature|bugfix|release)/ ]]; then
-            echo "Invalid branch name prefix: $BRANCH_NAME. Must be one of 'feature|bugfix|release'."
+          if [[ ! "$BRANCH_NAME" =~ ^(feature|fix|release)/ ]]; then
+            echo "Invalid branch name prefix: $BRANCH_NAME. Must be one of 'feature|fix|release'."
             exit 1
           fi

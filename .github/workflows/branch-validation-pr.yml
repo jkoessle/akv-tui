@@ -11,7 +11,7 @@ jobs:
       - name: Check source branch name
         run: |
           BRANCH_NAME="${GITHUB_HEAD_REF}"
-          if [[ ! "$BRANCH_NAME" =~ ^(feature|bugfix|release)/ ]]; then
-            echo "Pull requests from branch '$BRANCH_NAME' are not allowed. Must be one of 'feature|bugfix|release'."
+          if [[ ! "$BRANCH_NAME" =~ ^(feature|fix|release)/ ]]; then
+            echo "Pull requests from branch '$BRANCH_NAME' are not allowed. Must be one of 'feature|fix|release'."
             exit 1
           fi
